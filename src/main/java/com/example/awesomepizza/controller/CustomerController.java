@@ -8,12 +8,14 @@ import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@PreAuthorize("isAuthenticated()")
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/v1/customers")
@@ -66,6 +68,6 @@ public class CustomerController {
     @DeleteMapping("/{id}")
     public ResponseEntity deleteCustomer(@PathVariable("id") Long id) {
         customerService.deleteCustomer(id);
-        return new ResponseEntity(HttpStatus.OK);
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 }

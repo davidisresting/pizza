@@ -66,6 +66,6 @@ public class PizzaController {
     @DeleteMapping("/{id}")
     public ResponseEntity deletePizza(@PathVariable("id") Long id) {
         pizzaService.deletePizza(id);
-        return new ResponseEntity(HttpStatus.OK);
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 }
